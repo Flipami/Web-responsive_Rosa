@@ -51,15 +51,15 @@ module.exports = {
       }),
       new HtmlWebpackPlugin({
         filename: "index_about.html",
-        template: "./index.html"
+        template: "./index_about.html"
       }),
       new HtmlWebpackPlugin({
         filename: "index_contact.html",
-        template: "./index.html"
+        template: "./index_contact.html"
       }),
       new MiniCssExtractPlugin({
-        filename: "[name].css",
-        chunkFilename: "[id].css"
+        filename: "[name].scss",
+        chunkFilename: "[id].scss"
       })
     ]
 }

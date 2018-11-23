@@ -1,35 +1,322 @@
+@import "vars.scss";
+@import "mixins.scss";
 
+html {
+  height: 100%;
+  font-family: $font-stack;
+}
+.barra_menu {
+  height:50px;
+  width:100%;
+  margin-bottom: 0%;
+  @include display_setts(flex, row, space-between, none);
+}
+.gamma {
+  @include headings(white, $primaryColor, bolder, center); 
+  font-size: 25px;
+  align-self: center;
+}
+.menu {
+  height: 30px;
+  width: 43px;
+  display:flex;
+  color: rgb(7, 167, 119);
+  align-self: center;
+}
+nav {
+  display:flex;
+  margin-bottom:0;
+}
+.menu div {
+  display:none;
+  overflow: hidden;
+  margin-bottom: 0%;
+}
+
+/*botón*/
+.menu .drop {
+  height: 25px;
+  color: rgb(7, 167, 119);
+  padding: 1px;
+  padding-top:3px;
+  @include borders(5px);
+  cursor: pointer;
+     svg {
+        width: 27px;
+        height: 27px;
+        fill:grey;
+        vertical-align: middle;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+     }
+}
 
 body {
   margin: 0;
-  padding: 0;
 }
 
-%common-div{
-  width: 50vw;
-  height: 50vh;
-  background: tomato;
+.header {
+  @include display_setts(flex, column, none, none);
+  position: relative;
+  margin-top: 0;
+  @include headings(none, $primaryColor, bolder, center);
+  color: white;
+  font-size: 20px;
+  /* Accedemos a la carpeta con ./assets/site_showcase_bg.jpg */
+  background-image: url("./assets/site_showcase_bg.jpg");
+  background-size: cover;
 }
 
-.div-1 {
- 
+.images {
+  display: inline-flex;
+  flex-direction: column;
+  width: fit-content;
+  align-self: center;
+}
+.desktop {
+  display: none;
+}
+.image_bottom {
+  width: fit-content;
+}
 
+img {
+  width:100%;
+  display:block;
+  padding: 10px;
+}
 
-  img{
-    max-width: 20%;
+.alternative_heading{
+  @include display_setts(flex, column, center, center);
+  @include headings($primaryColor, white, bolder, initial);
+  height:75px;
+  margin-top: 0;
+}
+
+.lower_page {
+  @include headings($primaryColor, white, bolder, center);
+}
+
+main {
+  @include display_setts(flex, column, none, none);
+}
+
+main > div {
+  display:flex;
+}
+
+h1 {
+  font-size: 45px;
+  span {
+    color: $primaryColor;
   }
 }
 
-.div-2{
-  @extend %common-div;
+.first, .second, .third, .image_about {
+  @include display_setts(flex, column, flex-start, none);
+  @include borders(5px);
+  @include margins();
+  padding: 20px;
+}
 
-  .img{
-    max-width: 50%;
-    transition: all 1s;
+h2 {
+  height:40px;
+  @include headings(rgba(241, 239, 239, 0.986), black, lighter, flex-start);
+  @include borders(5px);
+} 
 
-    &:hover {
-      opacity: 0.4;
+.first_about, .second_about, .third_about {
+  width: 100%;
+  @include display_setts(flex, column, flex-start, none);
+  @include borders (5px);
+  @include margins();
+    h2 {  
+      width: auto;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding: 5px;
     }
+}
+
+p {
+  padding: 10px;
+}
+
+button, .submit {
+  height: 35px;
+  font-weight: 50px;
+  font-family: $font-stack;
+  background-color: beige;
+  @include borders (5px);
+}
+
+.contact_form {
+  @include display_setts(flex, column, none, none);
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px; 
+  @include borders (5px);
+  box-sizing: border-box; 
+  margin-top: 6px; 
+  margin-bottom: 16px; 
+  resize: vertical;
+}
+
+ul {
+  @include display_setts(flex, column, none, left);
+  list-style: none;
+  text-align: left;
+  padding-left: 0px;
+  font-size: 20px;
+}
+
+.lower_page {
+  @include display_setts(flex, column, none, none);
+  text-align: left;
+  padding-inline-start: 40px;
+}
+ul li:before {
+  content: '✓ ';
+}
+
+footer {
+  @include headings($secondColor, white, bolder, center);
+    a:link {
+      @include links(white);
+    }
+    a:visited {
+      @include links(white);
+    }
+    a:hover {
+      @include links(blue);
+    }
+}
+
+
+@media only screen and (min-width: 600px){
+  nav {
+    overflow: visible;
+    text-decoration:none;
+    font-size: x-large;
+    background-color: white;
+  }
+  .barra_menu {
+    display:grid;
+    grid-template-columns: repeat(2, 15vw);
+    grid-template-rows: repeat(1, 5vw);
+    justify-content: start;
+    text-align: left;
+    align-content: center;
+    max-height: 50px;
+  }
+  .menu .gamma {
+    grid-column-start: 1/2;
+    grid-row-start: 1/2;
+    justify-content: left;
+  }
+  .menu .drop {
+    display: none;
+  }
+  .menu nav {
+    height: 40px;
+    margin:0;
+  }
+  .menu nav > a {
+    max-height: 40px;
+    width:100%;
+    margin: 5px;
+    text-decoration: none;
+    color:$secondColor;
+  }
+  .menu nav > a:hover {
+    background-color: rgb(226, 224, 224);
+    max-width:auto;
+  }
+  .menu nav > a::selection{
+    @include links(rgb(107, 104, 104));
+  }
+  .images {
+    flex-direction: row;
+  }
+  .main_index{
+    display:grid;
+    grid-template-columns: repeat(2, 45vw);
+    grid-template-rows: repeat(2, 85vw);
+    justify-content: space-around;
+    text-align: left;
+    align-content: center;
   }
 }
 
+@media screen and (min-width: 992px) {
+  .header {
+    display:grid;
+    grid-template-columns: repeat(2, 50vw);
+    grid-template-rows: repeat(2, 25vw);
+    align-content: left;
+  }
+  .header .images {
+    align-self: center;
+    margin: 12px;
+    grid-column-start: 1/2;
+    grid-row-start: 2/3;
+    justify-content: left;
+  }
+  .header div:first-child {
+    grid-column-start: 1/2;
+    grid-row-start: 1/2;
+    justify-content: left;
+  }
+  .header .desktop{
+    grid-column-start: 2/3;
+    grid-row-start: 1/3;
+    width: fit-content;
+  }
+  .main_index{
+    display:grid;
+    grid-template-columns: repeat(3, 30vw);
+    grid-template-rows: repeat(1, 60vw);
+    justify-content: space-around;
+    text-align: left;
+    align-content: center;
+  }
+  .image_bottom {
+    box-flex: right;
+  }
+  footer > p {
+    box-flex: right;
+  }
+  .lower_page {
+    display:grid;
+    grid-template-columns: repeat(2, 45vw);
+    grid-template-rows: repeat(1, 30vw);
+    justify-content: left;
+    background-color: $primaryColor;
+    max-height: 350px;
+  }
+  .bottom{
+    display:grid;
+    grid-template-columns: repeat(2, 35vw);
+    grid-template-rows: repeat(1, 5vw);
+    justify-content: center;
+    align-content: center;
+    background-color: $secondColor;
+    max-height: 45px;
+  }
+  .bottom .a_buttons {
+    padding: 10px;
+    margin: 12px;
+  }
+  .bottom > p {
+    margin:12px;
+    grid-column-start: 2/3;
+    grid-row-start: 1/2;
+    justify-content: center;
+  }
+  .contact_form {
+    flex: left;
+  }
+}
